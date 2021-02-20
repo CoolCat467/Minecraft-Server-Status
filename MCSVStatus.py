@@ -12,8 +12,7 @@ __ver_major__ = 0
 __ver_minor__ = 0
 __ver_patch__ = 0
 
-serverIp = ''
-serverPort = 25565
+serveraddress = ''
 
 BUFSIZE = 2048
 
@@ -463,9 +462,9 @@ class MinecraftServerStatus(TCPSocketConnection):
         self.close_socket()
     pass
 
-def requestDataSocket(ip, port):
+def requestDataSocket(address):
     """Request data from the server itsself."""
-    mc = MinecraftServer(ip, port)
+    mc = MinecraftServer.lookup(address)
     json, latancy = mc.status()
     process_json(json)
 
@@ -503,7 +502,7 @@ def run():
 ##        requestData(conn, serverIp, serverPort)
 ##    finally:
 ##        conn.close()
-    requestDataSocket(serverIp, serverPort)
+    requestDataSocket(serveraddress)
 
 if __name__ == '__main__':
     print('%s v%s\nProgrammed by %s.' % (__title__, __version__, __author__))
