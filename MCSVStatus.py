@@ -31,6 +31,7 @@ import datetime
 import json
 
 from urllib.parse import urlparse
+import dns.resolver
 
 def parse_address(address):
     """Return a tuple of hostname, port from address."""
